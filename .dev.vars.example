@@ -1,0 +1,69 @@
+# =============================================================================
+# MODE: "reply" | "header" | "notify" (default: header)
+# =============================================================================
+MODE=header
+
+# =============================================================================
+# MAIN SETTINGS
+# =============================================================================
+MAIN_EMAIL_ADDRESS=your-forward@email.com
+
+# =============================================================================
+# HEADER MODE - Default: Add X-Email-Summary header + forward
+# =============================================================================
+PUSHOVER_ENABLED=false
+# PUSHOVER_USER_KEY=your-pushover-user-key
+# PUSHOVER_APP_TOKEN=your-pushover-app-token
+# PUSHOVER_PRIORITY=-1
+# PUSHOVER_SOUND=updown
+# PUSHOVER_MAX_MESSAGE_LENGTH=1000
+
+# =============================================================================
+# NOTIFY MODE - Send to ntfy.sh or Telegram (triggered by +suffix)
+# =============================================================================
+DEFAULT_TOPIC=your-ntfy-topic
+NTFY_URL=https://ntfy.sh
+# TELEGRAM_BOT_TOKEN=your-telegram-bot-token
+
+# =============================================================================
+# AI CONFIGURATION
+# =============================================================================
+# AI_MODEL=@cf/ibm-granite/granite-4.0-h-micro
+# AI_MODEL_REPLY=@cf/meta/llama-3.2-1b-instruct
+# AI_MODEL_HEADER=@cf/ibm-granite/granite-4.0-h-micro
+# AI_MODEL_NOTIFY=@cf/google/gemma-3-12b-it
+# AI_SYSTEM_PROMPT=You are a helpful assistant that summarizes emails concisely.
+# AI_USER_PROMPT=Summarize this email in under 100 words.
+
+# =============================================================================
+# FILTERING & SECURITY
+# =============================================================================
+# SENDER_WHITELIST=gmail.com,proton.me        # Only process from these (comma-separated)
+# SENDER_BLACKLIST=spam@example.com           # Block these senders (comma-separated)
+# SPAM_THRESHOLD=3                             # Spam detection sensitivity (1-10)
+# SPAM_FORWARD_EMAIL=spam@yourdomain.com      # Forward flagged spam here
+
+# =============================================================================
+# RATE LIMITING (requires KV namespace)
+# =============================================================================
+# RATE_LIMIT=20                                # Max emails per sender
+# RATE_LIMIT_WINDOW=3600                       # Window in seconds
+
+# =============================================================================
+# FORWARDING OPTIONS
+# =============================================================================
+FORWARD_ORIGINAL=true                         # Forward full email instead of summary
+
+# =============================================================================
+# ALIAS MAPPING (takes priority over domain-based)
+# Format: to_address:forward_address,to_address2:forward_address2
+# =============================================================================
+# ALIAS_MAPPING=john@domain.com:john@gmail.com,jane@domain.com:jane@gmail.com
+
+# =============================================================================
+# DOMAIN-BASED OVERRIDES
+# Format: @domain1.com:value1,@domain2.com:value2
+# =============================================================================
+# MAIN_EMAIL_ADDRESS_BY_DOMAIN=@gmail.com:backup1@gmail.com,@work.com:work-forward@work.com
+# DEFAULT_TOPIC_BY_DOMAIN=@gmail.com:personal,@work.com:work
+# PUSHOVER_ENABLED_BY_DOMAIN=@gmail.com:true

@@ -1,0 +1,70 @@
+name = "email-ai-worker"
+main = "worker.js"
+compatibility_date = "2025-08-31"
+compatibility_flags = ["nodejs_compat"]
+keep_vars = true
+
+[observability.logs]
+enabled = true
+
+[ai]
+binding = "AI"
+
+# KV namespace for stats and rate limiting
+# [[kv_namespaces]]
+# binding = "EMAIL_KV"
+# id = "your-kv-namespace-id"
+
+# =============================================================================
+# CONFIGURATION
+# =============================================================================
+
+[vars]
+# MODE: "reply" | "header" | "notify"
+# - "header" (default): Add X-Email-Summary header, forward, optional Pushover
+# - "reply": Send summary back to sender
+# - "notify": Send to ntfy topic or Telegram based on +suffix
+MODE = "header"
+
+# --- Main Settings ---
+# MAIN_EMAIL_ADDRESS = "your@email.com"      # Where to forward emails
+
+# --- Header Mode Settings ---
+# PUSHOVER_ENABLED = "true"                   # Enable Pushover notifications
+# PUSHOVER_USER_KEY = "your-user-key"
+# PUSHOVER_APP_TOKEN = "your-app-token"
+# PUSHOVER_PRIORITY = "-1"
+# PUSHOVER_SOUND = "updown"
+# PUSHOVER_MAX_MESSAGE_LENGTH = "1000"
+
+# --- Notify Mode Settings ---
+# DEFAULT_TOPIC = "default"                   # ntfy.sh topic for emails without "+" tag
+# NTFY_URL = "https://ntfy.sh"               # ntfy server URL
+# TELEGRAM_BOT_TOKEN = "bot:token"           # Optional: for Telegram notifications
+
+# --- AI Configuration ---
+AI_MODEL = "@cf/ibm-granite/granite-4.0-h-micro"
+# AI_MODEL_REPLY = "@cf/meta/llama-3.2-1b-instruct"
+# AI_MODEL_HEADER = "@cf/ibm-granite/granite-4.0-h-micro"
+# AI_MODEL_NOTIFY = "@cf/google/gemma-3-12b-it"
+
+# --- Filtering ---
+# SENDER_WHITELIST = "gmail.com,proton.me"   # Only process emails from these senders
+# SENDER_BLACKLIST = "spam@example.com"      # Skip emails from these senders
+# SPAM_THRESHOLD = "3"                        # Spam detection sensitivity (1-10)
+# SPAM_FORWARD_EMAIL = "spam@yourdomain.com" # Forward spam to this address
+
+# --- Rate Limiting ---
+# RATE_LIMIT = "20"                          # Max emails per sender in window
+# RATE_LIMIT_WINDOW = "3600"                 # Window in seconds (default: 1 hour)
+
+# --- Forwarding Options ---
+FORWARD_ORIGINAL = "true"
+
+# --- Alias Mapping (takes priority over domain-based) ---
+# ALIAS_MAPPING = "john@domain.com:john@gmail.com,jane@domain.com:jane@gmail.com"
+
+# --- Domain-based Overrides ---
+# MAIN_EMAIL_ADDRESS_BY_DOMAIN = "@gmail.com:backup@gmail.com,@work.com:forward@work.com"
+# DEFAULT_TOPIC_BY_DOMAIN = "@gmail.com:personal,@work.com:work"
+# PUSHOVER_ENABLED_BY_DOMAIN = "@gmail.com:true"
