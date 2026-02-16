@@ -11,9 +11,9 @@ enabled = true
 binding = "AI"
 
 # KV namespace for stats and rate limiting
-# [[kv_namespaces]]
-# binding = "EMAIL_KV"
-# id = "your-kv-namespace-id"
+[[kv_namespaces]]
+binding = "EMAIL_KV"
+id = "b5f392785b954730a1ba245cb89ce102"
 
 # =============================================================================
 # CONFIGURATION
