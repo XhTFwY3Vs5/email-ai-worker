@@ -330,10 +330,16 @@ async function handleReplyMode(message, env, emailData) {
   msg.setSender({ addr: message.to });
   msg.setRecipient(emailData.from);
   
-  const references = emailData.threadId ? emailData.threadId : (emailData.messageId ? emailData.messageId : '');
-  if (references) {
-    msg.setHeader('In-Reply-To', references);
-    msg.setHeader('References', references);
+  const messageId = message.headers.get('Message-ID');
+  const references = message.headers.get('References');
+  
+  if (messageId) {
+    msg.setHeader('In-Reply-To', messageId);
+    if (references) {
+      msg.setHeader('References', references + ' ' + messageId);
+    } else {
+      msg.setHeader('References', messageId);
+    }
   }
   
   msg.setSubject(`Summary of your email: ${emailData.subject}`);
