@@ -43,7 +43,8 @@ MODE = "header"
 # TELEGRAM_BOT_TOKEN = "bot:token"           # Optional: for Telegram notifications
 
 # --- AI Configuration ---
-AI_MODEL = "@cf/ibm-granite/granite-4.0-h-micro"
+# AI_MODEL = "@cf/ibm-granite/granite-4.0-h-micro"
+AI_MODEL = "@cf/meta/llama-3.2-1b-instruct"
 # AI_MODEL_REPLY = "@cf/meta/llama-3.2-1b-instruct"
 # AI_MODEL_HEADER = "@cf/ibm-granite/granite-4.0-h-micro"
 # AI_MODEL_NOTIFY = "@cf/google/gemma-3-12b-it"
