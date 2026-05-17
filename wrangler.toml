@@ -30,7 +30,7 @@ MODE = "header"
 # MAIN_EMAIL_ADDRESS = "your@email.com"      # Where to forward emails
 
 # --- Header Mode Settings ---
-# PUSHOVER_ENABLED = "true"                   # Enable Pushover notifications
+PUSHOVER_ENABLED = "false"                   # Enable Pushover notifications
 # PUSHOVER_USER_KEY = "your-user-key"
 # PUSHOVER_APP_TOKEN = "your-app-token"
 # PUSHOVER_PRIORITY = "-1"
