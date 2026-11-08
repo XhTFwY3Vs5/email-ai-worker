@@ -29,9 +29,9 @@ NTFY_URL=https://ntfy.sh
 # AI CONFIGURATION
 # =============================================================================
 # AI_MODEL=@cf/ibm-granite/granite-4.0-h-micro
-# AI_MODEL_REPLY=@cf/meta/llama-3.2-1b-instruct
+# AI_MODEL_REPLY=@cf/ibm-granite/granite-4.0-h-micro
 # AI_MODEL_HEADER=@cf/ibm-granite/granite-4.0-h-micro
-# AI_MODEL_NOTIFY=@cf/google/gemma-3-12b-it
+# AI_MODEL_NOTIFY=@cf/google/gemma-4-26b-a4b-it
 # AI_SYSTEM_PROMPT=You are a helpful assistant that summarizes emails concisely.
 # AI_USER_PROMPT=Summarize this email in under 100 words.
 
