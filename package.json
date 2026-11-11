@@ -10,11 +10,11 @@
     "test": "vitest run"
   },
   "dependencies": {
-    "mimetext": "^3.0.7",
-    "postal-mime": "^2.2.7"
+    "mimetext": "^3.0.28",
+    "postal-mime": "^2.7.6"
   },
   "devDependencies": {
-    "vitest": "^2.1.9",
-    "wrangler": "^3.78.6"
+    "vitest": "^5.1.0",
+    "wrangler": "^4.160.0"
   }
 }
