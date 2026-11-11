@@ -213,3 +213,10 @@ npm run deploy:secrets
 # Test locally
 npm run dev
 ```
+
+## Testing
+
+```bash
+npm install
+npm test
+```

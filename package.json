@@ -6,13 +6,15 @@
   "scripts": {
     "deploy": "wrangler deploy",
     "dev": "wrangler dev",
-    "deploy:secrets": "node deploy-secrets.js"
+    "deploy:secrets": "node deploy-secrets.js",
+    "test": "vitest run"
   },
   "dependencies": {
-    "postal-mime": "^2.2.7",
-    "mimetext": "^3.0.7"
+    "mimetext": "^3.0.7",
+    "postal-mime": "^2.2.7"
   },
   "devDependencies": {
+    "vitest": "^2.1.9",
     "wrangler": "^3.78.6"
   }
 }
