@@ -75,6 +75,12 @@ SENDER_WHITELIST=gmail.com,proton.me
 SENDER_BLACKLIST=spam@example.com,ads@company.com
 ```
 
+Matching rules (case-insensitive, entries comma-separated):
+- `user@domain.com` matches that exact address only.
+- `domain.com` or `@domain.com` matches that domain and its subdomains (`a@mail.domain.com`), not look-alikes (`a@domain.com.evil.net`).
+- Blacklist is checked first; a sender on both lists is blocked.
+- Substring matching (e.g. `example` matching any domain containing it) is not supported.
+
 ### Spam Detection
 Built-in spam filtering with keyword detection:
 

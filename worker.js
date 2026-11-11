@@ -95,30 +95,29 @@ function checkSpamScore(env, content, subject, from) {
   return score >= threshold;
 }
 
+// entry forms: "user@domain.com" (exact address), "domain.com" or "@domain.com" (domain and its subdomains)
+function matchesSenderRule(sender, entry) {
+  const s = (sender || '').trim().toLowerCase();
+  const e = (entry || '').trim().toLowerCase();
+  if (!s || !e) return false;
+  if (e.includes('@') && !e.startsWith('@')) return s === e;
+  const domain = e.replace(/^@/, '');
+  const senderDomain = getDomainFromEmail(s);
+  return senderDomain === domain || (senderDomain || '').endsWith('.' + domain);
+}
+
+function parseSenderList(value) {
+  return value.split(',').map(s => s.trim()).filter(Boolean);
+}
+
 function isWhitelisted(env, from) {
   if (!env.SENDER_WHITELIST) return null;
-  const whitelist = env.SENDER_WHITELIST.split(',').map(s => s.trim().toLowerCase());
-  const fromLower = from.toLowerCase();
-  
-  for (const allowed of whitelist) {
-    if (fromLower.includes(allowed) || fromLower.endsWith(allowed)) {
-      return true;
-    }
-  }
-  return false;
+  return parseSenderList(env.SENDER_WHITELIST).some(e => matchesSenderRule(from, e));
 }
 
 function isBlacklisted(env, from) {
   if (!env.SENDER_BLACKLIST) return false;
-  const blacklist = env.SENDER_BLACKLIST.split(',').map(s => s.trim().toLowerCase());
-  const fromLower = from.toLowerCase();
-  
-  for (const blocked of blacklist) {
-    if (fromLower.includes(blocked) || fromLower.endsWith(blocked)) {
-      return true;
-    }
-  }
-  return false;
+  return parseSenderList(env.SENDER_BLACKLIST).some(e => matchesSenderRule(from, e));
 }
 
 async function checkRateLimit(env, sender, ctx) {
@@ -511,9 +510,13 @@ export default {
       return;
     }
     
-    const whitelistStatus = isWhitelisted(env, emailData.from);
-    if (whitelistStatus === false && !isWhitelisted(env, emailData.from)) {
+    if (isBlacklisted(env, emailData.from)) {
       console.log('Sender is blacklisted, skipping');
+      return;
+    }
+
+    if (isWhitelisted(env, emailData.from) === false) {
+      console.log('Sender not in whitelist, skipping');
       return;
     }
     
@@ -586,4 +589,4 @@ export default {
   }
 };
 
-export { stripHtml, sanitizeHeaderValue, parseRawEmailText, isWhitelisted, isBlacklisted, isBounceEmail, checkSpamScore, getAliasForward, getOverrideByDomain, getConfigByDomain, getDomainFromEmail, determineMode, getModelForMode, generateSummary };
+export { stripHtml, sanitizeHeaderValue, parseRawEmailText, matchesSenderRule, isWhitelisted, isBlacklisted, isBounceEmail, checkSpamScore, getAliasForward, getOverrideByDomain, getConfigByDomain, getDomainFromEmail, determineMode, getModelForMode, generateSummary };
