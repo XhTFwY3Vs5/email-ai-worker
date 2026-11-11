@@ -158,7 +158,7 @@ npx wrangler login
 npx wrangler deploy --name your-worker-name
 
 # Optional: Create KV namespace for rate limiting
-npx wrangler kv:namespace create EMAIL_KV
+npx wrangler kv namespace create EMAIL_KV
 ```
 
 ### 2. Configure Email Routing
